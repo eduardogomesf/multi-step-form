@@ -1,7 +1,11 @@
+import { Sidebar } from "./_components/Sidebar";
+
+const steps = [{ number: 1 }, { number: 2 }, { number: 3 }, { number: 4 },]
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Hello World</h1>
+    <main className="flex">
+      <Sidebar currentStep={2} steps={steps} />
     </main>
   )
 }
