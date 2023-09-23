@@ -12,6 +12,7 @@ const config: Config = {
         white: '#FFFFFF',
         ['sky-blue']: '#BEE2FD',
         denim: '#022959',
+        bg: '#EFF5FF'
       }
     }
   },
