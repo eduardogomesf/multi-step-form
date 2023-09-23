@@ -9,10 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#FFFFFF',
+        white: '#FFFFFF',
+        ['sky-blue']: '#BEE2FD',
+        denim: '#022959',
       }
-    },
+    }
   },
   plugins: [],
 }
+
 export default config
