@@ -9,5 +9,14 @@
 }
 
 body {
-  background-color: theme('colors.bg');
+  @apply bg-bg
+}
+
+@media (min-width: 640px) {
+
+  /* 640px is the default min-width for sm in Tailwind */
+  body {
+    @apply bg-white;
+    /* Replace with the color you want at sm breakpoint */
+  }
 }
