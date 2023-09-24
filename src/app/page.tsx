@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from "react";
-import { Footer } from "./_components/Footer";
-import { Form } from "./_components/Form";
-import { Sidebar } from "./_components/Sidebar";
+import { Footer } from "./components/Footer";
+import { Form } from "./components/Form";
+import { Sidebar } from "./components/Sidebar";
 
 const steps = [{ title: 'Your info', number: 1 }, { title: 'Select plan', number: 2 }, { title: 'ADD-ONS', number: 3 }, { title: 'Summary', number: 4 },]
 
