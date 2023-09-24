@@ -19,8 +19,8 @@ export function TextInput({ label, placeholder, value, onChange, errorMessage }:
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between">
-        <label className="text-denim text-xs">{label}</label>
-        {hasError && <span className="text-red text-xs">{errorMessage}</span>}
+        <label className="text-denim text-xs sm:text-sm	">{label}</label>
+        {hasError && <span className="text-red text-xs sm:text-sm">{errorMessage}</span>}
       </div>
       <input
         className={`
