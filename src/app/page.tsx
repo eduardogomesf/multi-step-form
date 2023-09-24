@@ -8,7 +8,7 @@ import { Sidebar } from "./components/Sidebar";
 const steps = [{ title: 'Your info', number: 1 }, { title: 'Select plan', number: 2 }, { title: 'ADD-ONS', number: 3 }, { title: 'Summary', number: 4 },]
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(2)
+  const [currentStep, setCurrentStep] = useState(1)
 
   function handleNextStep() {
     if (currentStep === steps.length) return
@@ -28,7 +28,9 @@ export default function Home() {
       <Sidebar currentStep={currentStep} steps={steps} />
       <div className="flex flex-col flex-1 justify-between sm:max-w-[550px] sm:flex-0 sm:mx-auto">
         <div className="mx-4 flex justify-center">
-          <Form />
+          <Form
+            currentStep={currentStep}
+          />
         </div>
         <Footer
           currentStep={currentStep}
