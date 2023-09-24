@@ -8,7 +8,7 @@ import { Sidebar } from "./_components/Sidebar";
 const steps = [{ title: 'Your info', number: 1 }, { title: 'Select plan', number: 2 }, { title: 'ADD-ONS', number: 3 }, { title: 'Summary', number: 4 },]
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(2)
 
   function handleNextStep() {
     if (currentStep === steps.length) return
@@ -30,7 +30,12 @@ export default function Home() {
         <div className="mx-4 flex justify-center">
           <Form />
         </div>
-        <Footer nextStep={handleNextStep} previousStep={handlePreviousStep} />
+        <Footer
+          currentStep={currentStep}
+          numberOfSteps={steps.length}
+          nextStep={handleNextStep}
+          previousStep={handlePreviousStep}
+        />
       </div>
     </main >
   )
