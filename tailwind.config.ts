@@ -15,6 +15,9 @@ const config: Config = {
         bg: '#EFF5FF',
         ['light-blue']: '#ABBCFF',
         grey: '#9699AA',
+        red: '#EE374A',
+        'border-grey': '#D6D9E6',
+        purple: '#483EFF'
       }
     }
   },
