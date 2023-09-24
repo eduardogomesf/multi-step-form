@@ -13,7 +13,8 @@ const config: Config = {
         ['sky-blue']: '#BEE2FD',
         denim: '#022959',
         bg: '#EFF5FF',
-        ['light-blue']: '#ABBCFF'
+        ['light-blue']: '#ABBCFF',
+        grey: '#9699AA',
       }
     }
   },
