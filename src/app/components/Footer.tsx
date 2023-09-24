@@ -5,7 +5,9 @@ interface FooterProps {
   numberOfSteps: number;
 }
 
-export function Footer({ previousStep, nextStep, currentStep }: FooterProps) {
+export function Footer({ previousStep, nextStep, currentStep, numberOfSteps }: FooterProps) {
+  const isLastStep = currentStep === numberOfSteps;
+
   return (
     <footer className="p-4 bg-white flex justify-between items-center">
       <button
@@ -16,9 +18,9 @@ export function Footer({ previousStep, nextStep, currentStep }: FooterProps) {
       </button>
       <button
         onClick={nextStep}
-        className="bg-denim py-3 px-4 rounded text-sm text-white font-medium sm:text-base"
+        className={`${isLastStep ? 'bg-purple' : 'bg-denim'} py-3 px-4 rounded text-sm text-white font-medium sm:text-base`}
       >
-        Next step
+        {isLastStep ? 'Confirm' : 'Next step'}
       </button>
     </footer >
   )
