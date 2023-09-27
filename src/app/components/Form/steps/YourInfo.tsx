@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FormHeader } from "../FormHeader";
 import { TextInput } from "../TextInput";
 import { FormCard } from "../FormCard";
-import { Footer } from "../../Footer";
+import { FormButtons } from "../FormButtons";
 
 export function YourInfo() {
   const [name, setName] = useState('')
@@ -39,7 +39,7 @@ export function YourInfo() {
           />
         </div>
       </FormCard>
-      <Footer />
+      <FormButtons handleGoForwardStep={() => {}} handleGoBack={() => {}} />
     </div>
   )
 } 
