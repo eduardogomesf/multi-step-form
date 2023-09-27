@@ -1,6 +1,5 @@
 'use client'
 
-import { Footer } from "./components/Footer";
 import { Form } from "./components/Form";
 import { Sidebar } from "./components/Sidebar";
 import { FormStepProvider } from "./contexts/form-step";
@@ -13,14 +12,10 @@ export default function Home() {
       sm:flex-row sm:m-4 sm:mr-0 sm:h-[calc(100vh-32px)]`
       }>
         <Sidebar />
-        <div className="flex flex-col flex-1 justify-between sm:max-w-[550px] sm:flex-0 sm:mx-auto">
-          <div className="mx-4 flex justify-center">
-            <Form />
-          </div>
-          <Footer />
+        <div className="flex flex-1 sm:max-w-[550px] sm:flex-0 sm:mx-auto">
+          <Form />
         </div>
       </main >
     </FormStepProvider>
-
   )
 }
