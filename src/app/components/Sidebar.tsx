@@ -1,14 +1,9 @@
+import { useFormStep } from "../hooks/use-form-step";
 import { Step } from "./Step";
 
-interface Sidebar {
-  currentStep: number;
-  steps: Array<{
-    number: number;
-    title?: string;
-  }>;
-}
+export function Sidebar() {
+  const { currentStep, steps } = useFormStep();
 
-export function Sidebar({ steps, currentStep }: Sidebar) {
   return (
     <div
       className="
