@@ -1,15 +1,105 @@
 'use client';
 
-import { useState } from "react";
+import { useReducer } from "react";
 import { FormHeader } from "../FormHeader";
 import { TextInput } from "../TextInput";
 import { FormCard } from "../FormCard";
 import { FormButtons } from "../FormButtons";
+import { useFormStep } from "../../../hooks/use-form-step";
+
+const ACTIONS = {
+  SET_VALUE: 'SET_VALUE',
+  SET_ERROR: 'SET_ERROR',
+  CLEAR_ERROR: 'CLEAR_ERROR'
+}
+
+type FieldProps = {
+  value: string;
+  hasError: boolean;
+  errorMessage: string;
+}
+
+function handleFormState(state: FieldProps, action: any) {
+  switch (action.type) {
+    case ACTIONS.SET_VALUE:
+      return {
+        ...state,
+        value: action.value,
+        hasError: false,
+        errorMessage: ''
+      }
+    case ACTIONS.SET_ERROR:
+      return {
+        ...state,
+        hasError: true,
+        errorMessage: action.errorMessage
+      }
+    case ACTIONS.CLEAR_ERROR:
+      return {
+        ...state,
+        error: '',
+        hasError: false
+      }
+    default:
+      return state
+  }
+}
+
+const initialState = {
+  value: '',
+  hasError: false,
+  errorMessage: ''
+}
 
 export function YourInfo() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
+  const [nameField, dispatchNameField] = useReducer(handleFormState, initialState)
+  const [emailField, dispatchEmailField] = useReducer(handleFormState, initialState)
+  const [phoneNumberField, dispatchPhoneNumberField] = useReducer(handleFormState, initialState)
+
+  const { handleNextStep, handlePreviousStep } = useFormStep()
+
+  function validateForm() {
+    let formHasError = false
+
+    if (!nameField.value) {
+      dispatchNameField({ type: ACTIONS.SET_ERROR, errorMessage: 'Name is required' })
+      formHasError = true
+    }
+
+    if (!emailField.value) {
+      dispatchEmailField({ type: ACTIONS.SET_ERROR, errorMessage: 'Email is required' })
+      formHasError = true
+    } else {
+      const emailRegex = /\S+@\S+\.\S+/
+      if (!emailRegex.test(emailField.value)) {
+        dispatchEmailField({ type: ACTIONS.SET_ERROR, errorMessage: 'Email is invalid' })
+        formHasError = true
+      }
+    }
+
+    if (!phoneNumberField.value) {
+      dispatchPhoneNumberField({ type: ACTIONS.SET_ERROR, errorMessage: 'Phone number is required' })
+      formHasError = true
+    } else {
+      if (phoneNumberField.value.length < 6) {
+        dispatchPhoneNumberField({ type: ACTIONS.SET_ERROR, errorMessage: 'Phone number is invalid' })
+        formHasError = true
+      }
+    }
+
+    return !formHasError
+  }
+
+  function handleGoForwardStep() {
+    const isValid = validateForm()
+    if (isValid) {
+      handleNextStep()
+    }
+  }
+
+  function handleGoBack() {
+    handlePreviousStep()
+  }
 
   return (
     <div className="flex flex-col flex-1 justify-between">
@@ -19,27 +109,36 @@ export function YourInfo() {
           <TextInput
             label="Name"
             placeholder="e.g. Stephen King"
-            value={name}
-            onChange={setName}
-            errorMessage="The provided name is invalid"
+            value={nameField.value}
+            onChange={(value: string) => dispatchNameField({ type: ACTIONS.SET_VALUE, value })}
+            errorMessage={nameField.errorMessage}
+            clearError={() => dispatchNameField({ type: ACTIONS.CLEAR_ERROR })}
+            hasError={nameField.hasError}
           />
           <TextInput
             label="Email Address"
             placeholder="e.g. stephenking@lorem.com"
-            value={email}
-            onChange={setEmail}
-            errorMessage="E-mail is invalid"
+            value={emailField.value}
+            onChange={(value: string) => dispatchEmailField({ type: ACTIONS.SET_VALUE, value })}
+            errorMessage={emailField.errorMessage}
+            clearError={() => dispatchEmailField({ type: ACTIONS.CLEAR_ERROR })}
+            hasError={emailField.hasError}
           />
           <TextInput
             label="Phone Number"
             placeholder="e.g. +1 234 567 890"
-            value={phoneNumber}
-            onChange={setPhoneNumber}
-            errorMessage="Phone number is invalid"
+            value={phoneNumberField.value}
+            onChange={(value: string) => dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value })}
+            errorMessage={phoneNumberField.errorMessage}
+            clearError={() => dispatchPhoneNumberField({ type: ACTIONS.CLEAR_ERROR })}
+            hasError={phoneNumberField.hasError}
           />
         </div>
       </FormCard>
-      <FormButtons handleGoForwardStep={() => {}} handleGoBack={() => {}} />
+      <FormButtons
+        handleGoForwardStep={handleGoForwardStep}
+        handleGoBack={handleGoBack}
+      />
     </div>
   )
 } 

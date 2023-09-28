@@ -1,16 +1,14 @@
-import { useState } from "react";
-
 interface TextInputProps {
   label: string;
   placeholder: string;
   value: string;
   onChange: (value: any) => void;
   errorMessage: string
+  hasError: boolean
+  clearError: () => void
 }
 
-export function TextInput({ label, placeholder, value, onChange, errorMessage }: TextInputProps) {
-  const [hasError, setHasError] = useState(false)
-
+export function TextInput({ label, placeholder, value, onChange, errorMessage, hasError, clearError }: TextInputProps) {
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
     onChange(value)
@@ -32,7 +30,7 @@ export function TextInput({ label, placeholder, value, onChange, errorMessage }:
         placeholder={placeholder}
         value={value}
         onChange={handleInputChange}
-        onFocus={() => setHasError(false)}
+        onFocus={() => clearError()}
       />
     </div>
   )
