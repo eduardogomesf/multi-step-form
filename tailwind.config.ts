@@ -17,7 +17,8 @@ const config: Config = {
         grey: '#9699AA',
         red: '#EE374A',
         'border-grey': '#D6D9E6',
-        purple: '#483EFF'
+        purple: '#483EFF',
+        'very-light-grey': '#F8F9FF'
       }
     }
   },
