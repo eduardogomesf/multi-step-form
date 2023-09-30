@@ -7,7 +7,7 @@ import { PlanCard } from "../PlanCard";
 type TypeOfPlan = 'monthly' | 'yearly';
 
 export function Plans() {
-  const [typeOfPlan, setTypeOfPlan] = useState<TypeOfPlan>('monthly');
+  const [typeOfPlan, setTypeOfPlan] = useState<TypeOfPlan>('yearly');
   const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
   const [plans, setPlans] = useState([
     {
@@ -16,7 +16,8 @@ export function Plans() {
         'monthly': '$9/mo',
         'yearly': '$90/yr'
       },
-      icon: '/images/icons/icon-arcade.svg'
+      icon: '/images/icons/icon-arcade.svg',
+      freeTrialDescription: '2 months free',
     },
     {
       name: 'Advanced',
@@ -24,7 +25,8 @@ export function Plans() {
         'monthly': '$12/mo',
         'yearly': '$120/yr'
       },
-      icon: '/images/icons/icon-advanced.svg'
+      icon: '/images/icons/icon-advanced.svg',
+      freeTrialDescription: '2 months free',
     },
     {
       name: 'Pro',
@@ -32,7 +34,8 @@ export function Plans() {
         'monthly': '$15/mo',
         'yearly': '$150/yr'
       },
-      icon: '/images/icons/icon-pro.svg'
+      icon: '/images/icons/icon-pro.svg',
+      freeTrialDescription: '2 months free',
     },
   ]);
 
@@ -44,7 +47,7 @@ export function Plans() {
     <div className="flex flex-col flex-1 justify-between">
       <FormCard>
         <FormHeader title="Select your plan" description="You have the option of monthly or yearly billing." />
-        <div className="mt-5 flex flex-col gap-3">
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           {plans.map(plan => (
             <PlanCard
               key={plan.name}
@@ -53,6 +56,8 @@ export function Plans() {
               icon={plan.icon}
               isSelected={plan.name === selectedPlan}
               handleSelectPlan={() => setSelectedPlan(plan.name)}
+              freeTrialDescription={plan.freeTrialDescription}
+              isYearlyVersion={typeOfPlan === 'yearly'}
             />
           ))}
         </div>
