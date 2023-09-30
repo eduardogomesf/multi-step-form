@@ -4,6 +4,7 @@ import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 import { PlanCard } from "../PlanCard";
 import * as Switch from "@radix-ui/react-switch";
+import { useFormStep } from "../../../hooks/use-form-step";
 
 const plans = [
   {
@@ -43,9 +44,17 @@ export function Plans() {
 
   const typeOfPlan: TypeOfPlan = isYearly ? 'yearly' : 'monthly';
 
-  function handleGoForwardStep() {}
+  const { handleNextStep, handlePreviousStep } = useFormStep()
 
-  function handleGoBack() {}
+  function handleGoForwardStep() {
+    if (!selectedPlan) return;
+
+    handleNextStep()
+  }
+
+  function handleGoBack() {
+    handlePreviousStep()
+  }
 
   function handlePlanTypeChange() {
     setIsYearly(!isYearly);
