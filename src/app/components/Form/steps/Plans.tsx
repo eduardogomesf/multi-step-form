@@ -3,11 +3,12 @@ import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 import { PlanCard } from "../PlanCard";
+import * as Switch from "@radix-ui/react-switch";
 
 type TypeOfPlan = 'monthly' | 'yearly';
 
 export function Plans() {
-  const [typeOfPlan, setTypeOfPlan] = useState<TypeOfPlan>('yearly');
+  const [isYearly, setIsYearly] = useState<boolean>(false);
   const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
   const [plans, setPlans] = useState([
     {
@@ -39,9 +40,15 @@ export function Plans() {
     },
   ]);
 
+  const typeOfPlan = isYearly ? 'yearly' : 'monthly';
+
   function handleGoForwardStep() {}
 
   function handleGoBack() {}
+
+  function handlePlanTypeChange() {
+    setIsYearly(!isYearly);
+  }
 
   return (
     <div className="flex flex-col flex-1 justify-between">
@@ -57,9 +64,27 @@ export function Plans() {
               isSelected={plan.name === selectedPlan}
               handleSelectPlan={() => setSelectedPlan(plan.name)}
               freeTrialDescription={plan.freeTrialDescription}
-              isYearlyVersion={typeOfPlan === 'yearly'}
+              isYearlyVersion={isYearly}
             />
           ))}
+        </div>
+        <div className="flex justify-center items-center gap-6 py-4 bg-very-light-grey mt-6 rounded-lg sm:mt-8">
+          <span className={`text-sm font-normal ${isYearly ? 'text-grey' : 'text-denim'} duration-100`}>Monthly</span>
+          <Switch.Root
+            checked={isYearly}
+            onCheckedChange={handlePlanTypeChange}
+            className={`
+              w-[40px] h-[20px] p-1 relative bg-denim rounded-full
+            `}
+          >
+            <Switch.Thumb
+              className={`
+                w-[12px] h-[12px] block bg-white rounded-full
+                ${isYearly ? 'translate-x-[20px]	' : 'translate-x-0'} duration-300
+              `}
+            />
+          </Switch.Root>
+          <span className={`text-sm font-normal ${isYearly ? 'text-denim' : 'text-grey'} duration-100`}>Yearly</span>
         </div>
       </FormCard>
       <FormButtons
