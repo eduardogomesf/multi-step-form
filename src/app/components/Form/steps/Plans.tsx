@@ -5,42 +5,43 @@ import { FormHeader } from "../FormHeader";
 import { PlanCard } from "../PlanCard";
 import * as Switch from "@radix-ui/react-switch";
 
+const plans = [
+  {
+    name: 'Arcade',
+    price: {
+      'monthly': '$9/mo',
+      'yearly': '$90/yr'
+    },
+    icon: '/images/icons/icon-arcade.svg',
+    freeTrialDescription: '2 months free',
+  },
+  {
+    name: 'Advanced',
+    price: {
+      'monthly': '$12/mo',
+      'yearly': '$120/yr'
+    },
+    icon: '/images/icons/icon-advanced.svg',
+    freeTrialDescription: '2 months free',
+  },
+  {
+    name: 'Pro',
+    price: {
+      'monthly': '$15/mo',
+      'yearly': '$150/yr'
+    },
+    icon: '/images/icons/icon-pro.svg',
+    freeTrialDescription: '2 months free',
+  },
+];
+
 type TypeOfPlan = 'monthly' | 'yearly';
 
 export function Plans() {
   const [isYearly, setIsYearly] = useState<boolean>(false);
   const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
-  const [plans, setPlans] = useState([
-    {
-      name: 'Arcade',
-      price: {
-        'monthly': '$9/mo',
-        'yearly': '$90/yr'
-      },
-      icon: '/images/icons/icon-arcade.svg',
-      freeTrialDescription: '2 months free',
-    },
-    {
-      name: 'Advanced',
-      price: {
-        'monthly': '$12/mo',
-        'yearly': '$120/yr'
-      },
-      icon: '/images/icons/icon-advanced.svg',
-      freeTrialDescription: '2 months free',
-    },
-    {
-      name: 'Pro',
-      price: {
-        'monthly': '$15/mo',
-        'yearly': '$150/yr'
-      },
-      icon: '/images/icons/icon-pro.svg',
-      freeTrialDescription: '2 months free',
-    },
-  ]);
 
-  const typeOfPlan = isYearly ? 'yearly' : 'monthly';
+  const typeOfPlan: TypeOfPlan = isYearly ? 'yearly' : 'monthly';
 
   function handleGoForwardStep() {}
 
