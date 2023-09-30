@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { useLocalStorage } from '../hooks/use-local-storage';
 
 type FormStepContextData = {
   currentStep: number;
@@ -27,12 +28,27 @@ export const FormStepProvider = ({ children }: FormStepProviderProps) => {
     { title: 'Summary', number: 4 },
   ])
 
+  const { getValueFromLocalStorage, saveValueToLocalStorage } = useLocalStorage()
+
+  useEffect(() => {
+    const step = getValueFromLocalStorage('currentStep')
+    if (step) setCurrentStep(step)
+  }, [getValueFromLocalStorage])
+
   const handleNextStep = () => {
-    if (currentStep < steps.length) setCurrentStep(currentStep + 1);
+    const newStepValue = currentStep + 1;
+    if (currentStep < steps.length) {
+      setCurrentStep(newStepValue);
+      saveValueToLocalStorage('currentStep', `${newStepValue}`)
+    };
   };
 
   const handlePreviousStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
+    const newStepValue = currentStep - 1;
+    if (currentStep > 1) {
+      setCurrentStep(newStepValue);
+      saveValueToLocalStorage('currentStep', `${newStepValue}`)
+    }
   };
 
   return (
