@@ -1,11 +1,12 @@
 'use client';
 
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { FormHeader } from "../FormHeader";
 import { TextInput } from "../TextInput";
 import { FormCard } from "../FormCard";
 import { FormButtons } from "../FormButtons";
 import { useFormStep } from "../../../hooks/use-form-step";
+import { useLocalStorage } from "../../../hooks/use-local-storage";
 
 const ACTIONS = {
   SET_VALUE: 'SET_VALUE',
@@ -58,6 +59,17 @@ export function YourInfo() {
 
   const { handleNextStep, handlePreviousStep } = useFormStep()
 
+  const { getValueFromLocalStorage, saveValueToLocalStorage } = useLocalStorage()
+
+  useEffect(() => {
+    const yourInfo = getValueFromLocalStorage('your-info')
+    if (yourInfo) {
+      dispatchNameField({ type: ACTIONS.SET_VALUE, value: yourInfo.name })
+      dispatchEmailField({ type: ACTIONS.SET_VALUE, value: yourInfo.email })
+      dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value: yourInfo.phoneNumber })
+    }
+  }, [])
+
   function validateForm() {
     let formHasError = false
 
@@ -93,6 +105,11 @@ export function YourInfo() {
   function handleGoForwardStep() {
     const isValid = validateForm()
     if (isValid) {
+      saveValueToLocalStorage('your-info', JSON.stringify({
+        name: nameField.value,
+        email: emailField.value,
+        phoneNumber: phoneNumberField.value
+      }))
       handleNextStep()
     }
   }
