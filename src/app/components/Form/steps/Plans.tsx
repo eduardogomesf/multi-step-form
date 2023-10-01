@@ -6,13 +6,14 @@ import * as Switch from "@radix-ui/react-switch";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
+import { priceFormatter } from "../../../util/price-formatter";
 
 const plans = [
   {
     name: 'Arcade',
     price: {
-      'monthly': '$9/mo',
-      'yearly': '$90/yr'
+      'monthly': 9,
+      'yearly': 90
     },
     icon: '/images/icons/icon-arcade.svg',
     freeTrialDescription: '2 months free',
@@ -20,8 +21,8 @@ const plans = [
   {
     name: 'Advanced',
     price: {
-      'monthly': '$12/mo',
-      'yearly': '$120/yr'
+      'monthly': 12,
+      'yearly': 120
     },
     icon: '/images/icons/icon-advanced.svg',
     freeTrialDescription: '2 months free',
@@ -29,8 +30,8 @@ const plans = [
   {
     name: 'Pro',
     price: {
-      'monthly': '$15/mo',
-      'yearly': '$150/yr'
+      'monthly': 15,
+      'yearly': 150
     },
     icon: '/images/icons/icon-pro.svg',
     freeTrialDescription: '2 months free',
@@ -77,7 +78,7 @@ export function Plans() {
             <PlanCard
               key={plan.name}
               name={plan.name}
-              price={plan.price[typeOfPlan]}
+              price={priceFormatter(plan.price[typeOfPlan], isYearly)}
               icon={plan.icon}
               isSelected={plan.name === selectedPlan}
               handleSelectPlan={() => setSelectedPlan(plan.name)}
