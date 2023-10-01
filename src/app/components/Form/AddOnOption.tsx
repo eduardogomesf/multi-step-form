@@ -1,12 +1,66 @@
-export function AddOnOption() {
+import * as Checkbox from "@radix-ui/react-checkbox";
+import { CheckIcon } from '@radix-ui/react-icons';
+import { useForm } from "../../hooks/use-form";
+import { priceFormatter } from "../../util/price-formatter";
+
+interface AddOnOptionProps {
+  addOn: {
+    title: string;
+    description: string;
+    price: {
+      monthly: number;
+      yearly: number;
+    }
+  }
+  isSelected: boolean
+  handleSelectAddon: (addOn: any) => void
+  handleUnselectedAddon: (addOn: any) => void
+}
+
+export function AddOnOption({ addOn, isSelected, handleSelectAddon, handleUnselectedAddon }: AddOnOptionProps) {
+  const { isYearly } = useForm()
+
+  const planType = isYearly ? 'yearly' : 'monthly'
+
+  function handleClick() {
+    if (isSelected) {
+      handleUnselectedAddon(addOn)
+    } else {
+      handleSelectAddon(addOn)
+    }
+  }
+
   return (
-    <button>
-      <span>Checkbox</span>
-      <div>
-        <strong>Online Service</strong>
-        <span>Access to multiplayer games</span>
+    <button
+      onClick={handleClick}
+      className={`
+        flex items-center gap-4 px-4 py-3 bg-white rounded-lg border-border-grey border-[1px] 
+        ${isSelected ? 'border-purple bg-very-light-grey' : ''}
+        hover:border-purple duration-200 hover:bg-very-light-grey
+      `}
+    >
+      <Checkbox.Root
+        className={
+          `
+            rounded h-5 w-5 flex items-center justify-center duration-200 hover:bg-purple
+            ${isSelected ? 'bg-purple' : 'bg-white'}
+          `
+        }
+        checked={isSelected}
+        defaultChecked={isSelected}
+        disabled
+      >
+        <Checkbox.Indicator className="text-white font-bold text-base">
+          <CheckIcon width={20} height={20} />
+        </Checkbox.Indicator>
+      </Checkbox.Root>
+      <div className="flex flex-col gap-1">
+        <strong className="text-sm text-denim font-medium">{addOn.title}</strong>
+        <span className="text-xs text-grey font-normal">{addOn.description}</span>
       </div>
-      <span>+$1/month</span>
+      <span className="text-xs text-purple font-normal leading-5 ml-auto">
+        {"+" + priceFormatter(addOn.price[planType], isYearly)}
+      </span>
     </button>
   )
 
