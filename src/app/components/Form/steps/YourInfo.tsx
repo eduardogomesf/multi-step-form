@@ -1,74 +1,27 @@
 'use client';
 
-import { useEffect, useReducer } from "react";
 import { FormHeader } from "../FormHeader";
 import { TextInput } from "../TextInput";
 import { FormCard } from "../FormCard";
 import { FormButtons } from "../FormButtons";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
-
-const ACTIONS = {
-  SET_VALUE: 'SET_VALUE',
-  SET_ERROR: 'SET_ERROR',
-  CLEAR_ERROR: 'CLEAR_ERROR'
-}
-
-type FieldProps = {
-  value: string;
-  hasError: boolean;
-  errorMessage: string;
-}
-
-function handleFormState(state: FieldProps, action: any) {
-  switch (action.type) {
-    case ACTIONS.SET_VALUE:
-      return {
-        ...state,
-        value: action.value,
-        hasError: false,
-        errorMessage: ''
-      }
-    case ACTIONS.SET_ERROR:
-      return {
-        ...state,
-        hasError: true,
-        errorMessage: action.errorMessage
-      }
-    case ACTIONS.CLEAR_ERROR:
-      return {
-        ...state,
-        error: '',
-        hasError: false
-      }
-    default:
-      return state
-  }
-}
-
-const initialState = {
-  value: '',
-  hasError: false,
-  errorMessage: ''
-}
+import { useForm } from "../../../hooks/use-form";
+import { ACTIONS } from "../../../contexts/form";
 
 export function YourInfo() {
-  const [nameField, dispatchNameField] = useReducer(handleFormState, initialState)
-  const [emailField, dispatchEmailField] = useReducer(handleFormState, initialState)
-  const [phoneNumberField, dispatchPhoneNumberField] = useReducer(handleFormState, initialState)
+  const {
+    nameField,
+    dispatchNameField,
+    emailField,
+    dispatchEmailField,
+    phoneNumberField,
+    dispatchPhoneNumberField
+  } = useForm()
 
   const { handleNextStep, handlePreviousStep } = useFormStep()
 
-  const { getValueFromLocalStorage, saveValueToLocalStorage } = useLocalStorage()
-
-  useEffect(() => {
-    const yourInfo = getValueFromLocalStorage('your-info')
-    if (yourInfo) {
-      dispatchNameField({ type: ACTIONS.SET_VALUE, value: yourInfo.name })
-      dispatchEmailField({ type: ACTIONS.SET_VALUE, value: yourInfo.email })
-      dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value: yourInfo.phoneNumber })
-    }
-  }, [])
+  const { saveValueToLocalStorage } = useLocalStorage()
 
   function validateForm() {
     let formHasError = false
@@ -114,10 +67,6 @@ export function YourInfo() {
     }
   }
 
-  function handleGoBack() {
-    handlePreviousStep()
-  }
-
   return (
     <div className="flex flex-col flex-1 justify-between">
       <FormCard>
@@ -154,7 +103,7 @@ export function YourInfo() {
       </FormCard>
       <FormButtons
         handleGoForwardStep={handleGoForwardStep}
-        handleGoBack={handleGoBack}
+        handleGoBack={handlePreviousStep}
       />
     </div>
   )
