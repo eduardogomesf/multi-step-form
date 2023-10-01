@@ -24,6 +24,8 @@ type FormContextData = {
   setIsYearly: React.Dispatch<React.SetStateAction<boolean>>;
   selectedPlan: string;
   setSelectedPlan: React.Dispatch<React.SetStateAction<string>>;
+  addOns: { title: string, description: string, price: number }[];
+  setAddOns: React.Dispatch<React.SetStateAction<{ title: string; description: string; price: number; }[]>>;
 }
 
 export const FormContext = createContext({
@@ -36,7 +38,9 @@ export const FormContext = createContext({
   isYearly: false,
   setIsYearly: () => {},
   selectedPlan: '',
-  setSelectedPlan: () => {}
+  setSelectedPlan: () => {},
+  addOns: [],
+  setAddOns: () => {}
 } as FormContextData);
 
 export const ACTIONS = {
@@ -88,6 +92,9 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   const [isYearly, setIsYearly] = useState<boolean>(false);
   const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
 
+  // Add Ons
+  const [addOns, setAddOns] = useState<{ title: string, description: string, price: number }[]>([]);
+
   const { getValueFromLocalStorage } = useLocalStorage()
 
   useEffect(() => {
@@ -103,6 +110,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       setSelectedPlan(plan.name)
       setIsYearly(plan.isYearly)
     }
+
   }, [])
 
   const value = {
@@ -115,7 +123,9 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     isYearly,
     setIsYearly,
     selectedPlan,
-    setSelectedPlan
+    setSelectedPlan,
+    addOns,
+    setAddOns
   }
 
   return (
