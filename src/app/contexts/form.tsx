@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from 'react';
+import { createContext, useEffect, useReducer, useState } from 'react';
 import { useLocalStorage } from '../hooks/use-local-storage';
 
 type Field = {
@@ -20,6 +20,10 @@ type FormContextData = {
   dispatchEmailField: React.Dispatch<any>;
   phoneNumberField: Field;
   dispatchPhoneNumberField: React.Dispatch<any>;
+  isYearly: boolean;
+  setIsYearly: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedPlan: string;
+  setSelectedPlan: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const FormContext = createContext({
@@ -28,7 +32,11 @@ export const FormContext = createContext({
   emailField: initialState,
   dispatchEmailField: () => {},
   phoneNumberField: initialState,
-  dispatchPhoneNumberField: () => {}
+  dispatchPhoneNumberField: () => {},
+  isYearly: false,
+  setIsYearly: () => {},
+  selectedPlan: '',
+  setSelectedPlan: () => {}
 } as FormContextData);
 
 export const ACTIONS = {
@@ -71,9 +79,14 @@ interface FormProviderProps {
 }
 
 export const FormProvider = ({ children }: FormProviderProps) => {
+  // Your Info
   const [nameField, dispatchNameField] = useReducer(handleFormState, initialState)
   const [emailField, dispatchEmailField] = useReducer(handleFormState, initialState)
   const [phoneNumberField, dispatchPhoneNumberField] = useReducer(handleFormState, initialState)
+
+  // Plan
+  const [isYearly, setIsYearly] = useState<boolean>(false);
+  const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
 
   const { getValueFromLocalStorage } = useLocalStorage()
 
@@ -84,6 +97,12 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       dispatchEmailField({ type: ACTIONS.SET_VALUE, value: yourInfo.email })
       dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value: yourInfo.phoneNumber })
     }
+
+    const plan = getValueFromLocalStorage('plan')
+    if (plan) {
+      setSelectedPlan(plan.name)
+      setIsYearly(plan.isYearly)
+    }
   }, [])
 
   const value = {
@@ -92,7 +111,11 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     emailField,
     dispatchEmailField,
     phoneNumberField,
-    dispatchPhoneNumberField
+    dispatchPhoneNumberField,
+    isYearly,
+    setIsYearly,
+    selectedPlan,
+    setSelectedPlan
   }
 
   return (

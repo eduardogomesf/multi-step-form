@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
@@ -6,6 +5,7 @@ import { PlanCard } from "../PlanCard";
 import * as Switch from "@radix-ui/react-switch";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
+import { useForm } from "../../../hooks/use-form";
 
 const plans = [
   {
@@ -40,21 +40,18 @@ const plans = [
 type TypeOfPlan = 'monthly' | 'yearly';
 
 export function Plans() {
-  const [isYearly, setIsYearly] = useState<boolean>(false);
-  const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
+  const {
+    selectedPlan,
+    setSelectedPlan,
+    isYearly,
+    setIsYearly
+  } = useForm()
 
   const typeOfPlan: TypeOfPlan = isYearly ? 'yearly' : 'monthly';
 
   const { handleNextStep, handlePreviousStep } = useFormStep()
 
-  const { getValueFromLocalStorage, saveValueToLocalStorage } = useLocalStorage()
-
-  useEffect(() => {
-    const plan = getValueFromLocalStorage('plan')
-    if (!plan) return;
-    setSelectedPlan(plan.name)
-    setIsYearly(plan.isYearly)
-  }, [])
+  const { saveValueToLocalStorage } = useLocalStorage()
 
   function handleGoForwardStep() {
     if (!selectedPlan) return;
@@ -66,9 +63,6 @@ export function Plans() {
     handleNextStep()
   }
 
-  function handleGoBack() {
-    handlePreviousStep()
-  }
 
   function handlePlanTypeChange() {
     setIsYearly(!isYearly);
@@ -113,7 +107,7 @@ export function Plans() {
       </FormCard>
       <FormButtons
         handleGoForwardStep={handleGoForwardStep}
-        handleGoBack={handleGoBack}
+        handleGoBack={handlePreviousStep}
       />
     </div>
   )
