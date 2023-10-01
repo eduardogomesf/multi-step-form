@@ -111,6 +111,10 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       setIsYearly(plan.isYearly)
     }
 
+    const addOnsFromLocalStorage = getValueFromLocalStorage('add-ons')
+    if (addOnsFromLocalStorage) {
+      setAddOns(addOnsFromLocalStorage)
+    }
   }, [])
 
   const value = {

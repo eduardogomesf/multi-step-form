@@ -1,5 +1,6 @@
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
+import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { AddOnOption } from "../AddOnOption";
 import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
@@ -11,7 +12,16 @@ type Addon = {
   price: number
 }
 
-const ADD_ONS = [
+type AddonWithPrices = {
+  title: string;
+  description: string;
+  price: {
+    monthly: number;
+    yearly: number;
+  }
+}
+
+const ADD_ONS: AddonWithPrices[] = [
   {
     title: 'Online service',
     description: 'Access to multiplayer games',
@@ -40,12 +50,19 @@ const ADD_ONS = [
 
 export function AddOns() {
 
-  const { addOns, setAddOns } = useForm()
+  const { addOns, setAddOns, isYearly } = useForm()
 
   const { handleNextStep, handlePreviousStep } = useFormStep()
 
-  function handleSelectAddon(addOn: Addon) {
-    setAddOns((currentAddons) => [...currentAddons, addOn])
+  const { saveValueToLocalStorage } = useLocalStorage()
+
+  function handleSelectAddon(addOn: AddonWithPrices) {
+    const formattedAddOn = {
+      title: addOn.title,
+      description: addOn.description,
+      price: addOn.price[isYearly ? 'yearly' : 'monthly']
+    }
+    setAddOns((currentAddons) => [...currentAddons, formattedAddOn])
   }
 
   function handleUnselectedAddon(addOn: Addon) {
@@ -53,6 +70,7 @@ export function AddOns() {
   }
 
   function handleGoForwardStep() {
+    saveValueToLocalStorage('add-ons', JSON.stringify(addOns))
     handleNextStep()
   }
 
