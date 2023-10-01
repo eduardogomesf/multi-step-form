@@ -98,17 +98,17 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   const { getValueFromLocalStorage } = useLocalStorage()
 
   useEffect(() => {
-    const yourInfo = getValueFromLocalStorage('your-info')
-    if (yourInfo) {
-      dispatchNameField({ type: ACTIONS.SET_VALUE, value: yourInfo.name })
-      dispatchEmailField({ type: ACTIONS.SET_VALUE, value: yourInfo.email })
-      dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value: yourInfo.phoneNumber })
+    const yourInfoFromLocalStorage = getValueFromLocalStorage('your-info')
+    if (yourInfoFromLocalStorage) {
+      dispatchNameField({ type: ACTIONS.SET_VALUE, value: yourInfoFromLocalStorage.name })
+      dispatchEmailField({ type: ACTIONS.SET_VALUE, value: yourInfoFromLocalStorage.email })
+      dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value: yourInfoFromLocalStorage.phoneNumber })
     }
 
-    const plan = getValueFromLocalStorage('plan')
-    if (plan) {
-      setSelectedPlan(plan.name)
-      setIsYearly(plan.isYearly)
+    const planFromLocalStorage = getValueFromLocalStorage('plan')
+    if (planFromLocalStorage) {
+      setSelectedPlan(planFromLocalStorage.name)
+      setIsYearly(planFromLocalStorage.isYearly)
     }
 
     const addOnsFromLocalStorage = getValueFromLocalStorage('add-ons')
