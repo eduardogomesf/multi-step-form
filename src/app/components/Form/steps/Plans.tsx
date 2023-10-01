@@ -60,6 +60,7 @@ export function Plans() {
     if (!selectedPlan) return;
     saveValueToLocalStorage('plan', JSON.stringify({
       name: selectedPlan,
+      price: plans.find(plan => plan.name === selectedPlan)?.price[typeOfPlan],
       isYearly
     }))
     handleNextStep()
