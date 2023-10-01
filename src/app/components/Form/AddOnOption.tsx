@@ -37,6 +37,7 @@ export function AddOnOption({ addOn, isSelected, handleSelectAddon, handleUnsele
         flex items-center gap-4 px-4 py-3 bg-white rounded-lg border-border-grey border-[1px] 
         ${isSelected ? 'border-purple bg-very-light-grey' : ''}
         hover:border-purple duration-200 hover:bg-very-light-grey
+        sm:gap-6 sm:px-6
       `}
     >
       <Checkbox.Root
@@ -54,11 +55,11 @@ export function AddOnOption({ addOn, isSelected, handleSelectAddon, handleUnsele
           <CheckIcon width={20} height={20} />
         </Checkbox.Indicator>
       </Checkbox.Root>
-      <div className="flex flex-col gap-1">
-        <strong className="text-sm text-denim font-medium">{addOn.title}</strong>
-        <span className="text-xs text-grey font-normal">{addOn.description}</span>
+      <div className="flex flex-col gap-1 items-start">
+        <strong className="text-sm text-denim font-medium sm:text-base">{addOn.title}</strong>
+        <span className="text-xs text-grey font-normal sm:text-sm">{addOn.description}</span>
       </div>
-      <span className="text-xs text-purple font-normal leading-5 ml-auto">
+      <span className="text-xs text-purple font-normal leading-5 ml-auto sm:text-sm ">
         {"+" + priceFormatter(addOn.price[planType], isYearly)}
       </span>
     </button>
