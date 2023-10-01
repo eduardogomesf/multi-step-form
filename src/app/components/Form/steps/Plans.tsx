@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 import { PlanCard } from "../PlanCard";
 import * as Switch from "@radix-ui/react-switch";
 import { useFormStep } from "../../../hooks/use-form-step";
+import { useLocalStorage } from "../../../hooks/use-local-storage";
 
 const plans = [
   {
@@ -46,9 +47,21 @@ export function Plans() {
 
   const { handleNextStep, handlePreviousStep } = useFormStep()
 
+  const { getValueFromLocalStorage, saveValueToLocalStorage } = useLocalStorage()
+
+  useEffect(() => {
+    const plan = getValueFromLocalStorage('plan')
+    if (!plan) return;
+    setSelectedPlan(plan.name)
+    setIsYearly(plan.isYearly)
+  }, [])
+
   function handleGoForwardStep() {
     if (!selectedPlan) return;
-
+    saveValueToLocalStorage('plan', JSON.stringify({
+      name: selectedPlan,
+      isYearly
+    }))
     handleNextStep()
   }
 
