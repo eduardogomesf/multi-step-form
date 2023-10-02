@@ -26,6 +26,7 @@ type FormContextData = {
   setSelectedPlan: React.Dispatch<React.SetStateAction<Plan>>;
   addOns: { title: string, description: string, price: number }[];
   setAddOns: React.Dispatch<React.SetStateAction<{ title: string; description: string; price: number; }[]>>;
+  clearForm: () => void;
 }
 
 export const FormContext = createContext({
@@ -40,7 +41,8 @@ export const FormContext = createContext({
   selectedPlan: null as any,
   setSelectedPlan: () => {},
   addOns: [],
-  setAddOns: () => {}
+  setAddOns: () => {},
+  clearForm: () => {}
 } as FormContextData);
 
 export const ACTIONS = {
@@ -100,7 +102,20 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   // Add Ons
   const [addOns, setAddOns] = useState<{ title: string, description: string, price: number }[]>([]);
 
-  const { getValueFromLocalStorage } = useLocalStorage()
+  const { getValueFromLocalStorage, removeValueFromLocalStorage } = useLocalStorage()
+
+  function clearForm() {
+    removeValueFromLocalStorage('your-info')
+    removeValueFromLocalStorage('plan')
+    removeValueFromLocalStorage('add-ons')
+
+    dispatchNameField({ type: ACTIONS.SET_VALUE, value: '' })
+    dispatchEmailField({ type: ACTIONS.SET_VALUE, value: '' })
+    dispatchPhoneNumberField({ type: ACTIONS.SET_VALUE, value: '' })
+    setIsYearly(false)
+    setSelectedPlan(null as any)
+    setAddOns([])
+  }
 
   useEffect(() => {
     const yourInfoFromLocalStorage = getValueFromLocalStorage('your-info')
@@ -134,7 +149,8 @@ export const FormProvider = ({ children }: FormProviderProps) => {
     selectedPlan,
     setSelectedPlan,
     addOns,
-    setAddOns
+    setAddOns,
+    clearForm
   }
 
   return (

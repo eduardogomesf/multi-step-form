@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { priceFormatter } from "../../../util/price-formatter";
@@ -6,21 +7,37 @@ import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 
 export function Summary() {
+  const [submitted, setSubmitted] = useState(false)
 
   const { handlePreviousStep, moveToStep } = useFormStep()
 
-  const { addOns, selectedPlan, isYearly } = useForm()
+  const { addOns, selectedPlan, isYearly, clearForm } = useForm()
 
   function handleGoForwardStep() {
-    console.log("Confirming...")
+    setSubmitted(true)
   }
 
   function handleChangePlan() {
     moveToStep(2)
   }
 
-  const addOnsTotalPrice = addOns.reduce((acc, addOn) => acc + addOn.price, 0)
+  useEffect(() => {
+    if (submitted) {
+      clearForm()
 
+      setTimeout(() => {
+        moveToStep(1)
+      }, 4000)
+    }
+  }, [submitted, moveToStep])
+
+  if (submitted) {
+    return (
+      <div>Finished...</div>
+    )
+  }
+
+  const addOnsTotalPrice = addOns.reduce((acc, addOn) => acc + addOn.price, 0)
   const finalPrice = selectedPlan.price + addOnsTotalPrice
 
   return (
