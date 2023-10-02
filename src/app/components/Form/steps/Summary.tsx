@@ -18,10 +18,14 @@ export function Summary() {
         <div className="mt-5 flex flex-col gap-3 bg-very-light-grey rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1 items-start">
-              <strong className="text-sm font-medium text-denim">Arcade (Monthly)</strong>
-              <button className="text-sm leading-5 font-normal text-grey underline">Change</button>
+              <strong className="text-sm font-medium text-denim sm:text-base">Arcade (Monthly)</strong>
+              <button
+                className="text-sm leading-5 font-normal text-grey underline cursor-pointer hover:text-purple duration-200"
+              >
+                Change
+              </button>
             </div>
-            <span className="text-sm leading-5 font-bold text-denim">$9/mo</span>
+            <span className="text-sm leading-5 font-bold text-denim sm:text-base">$9/mo</span>
           </div>
 
           <div className="h-[1px] w-full bg-border-grey" />
@@ -34,7 +38,7 @@ export function Summary() {
 
         <div className="mt-6 flex items-center justify-between px-4">
           <strong className="text-sm leading-5 font-normal text-grey">Total (per month)</strong>
-          <span className="text-base leading-5 font-bold text-purple">+$12/mo</span>
+          <span className="text-base leading-5 font-bold text-purple sm:text-xl">+$12/mo</span>
         </div>
       </FormCard>
       <FormButtons
