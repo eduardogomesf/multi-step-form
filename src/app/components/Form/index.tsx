@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { useFormStep } from "../../hooks/use-form-step";
 import { YourInfo } from "./steps/YourInfo";
 import { Plans } from "./steps/Plans";
