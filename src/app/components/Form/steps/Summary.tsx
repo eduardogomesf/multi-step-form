@@ -19,6 +19,10 @@ export function Summary() {
     moveToStep(2)
   }
 
+  const addOnsTotalPrice = addOns.reduce((acc, addOn) => acc + addOn.price, 0)
+
+  const finalPrice = selectedPlan.price + addOnsTotalPrice
+
   return (
     <div className="flex flex-col flex-1 justify-between">
       <FormCard>
@@ -26,7 +30,9 @@ export function Summary() {
         <div className="mt-5 flex flex-col gap-3 bg-very-light-grey rounded-lg p-4 sm:px-6">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1 items-start">
-              <strong className="text-sm font-medium text-denim sm:text-base">{`${selectedPlan} (${isYearly ? 'Yearly' : 'Monthly'})`}</strong>
+              <strong className="text-sm font-medium text-denim sm:text-base">
+                {`${selectedPlan.name} (${isYearly ? 'Yearly' : 'Monthly'})`}
+              </strong>
               <button
                 className="text-sm leading-5 font-normal text-grey underline cursor-pointer hover:text-purple duration-200"
                 onClick={handleChangePlan}
@@ -34,22 +40,32 @@ export function Summary() {
                 Change
               </button>
             </div>
-            <span className="text-sm leading-5 font-bold text-denim sm:text-base">{priceFormatter(9, isYearly)}</span>
+            <span className="text-sm leading-5 font-bold text-denim sm:text-base">
+              {priceFormatter(selectedPlan.price, isYearly)}
+            </span>
           </div>
 
           <div className="h-[1px] w-full bg-border-grey" />
 
           {addOns.map((addOn, index) => (
             <div key={index} className="flex items-center justify-between">
-              <strong className="text-sm leading-5 font-normal text-grey">{addOn.title}</strong>
-              <span className="text-sm leading-5 font-normal text-denim">+{priceFormatter(addOn.price, isYearly)}</span>
+              <strong className="text-sm leading-5 font-normal text-grey">
+                {addOn.title}
+              </strong>
+              <span className="text-sm leading-5 font-normal text-denim">
+                +{priceFormatter(addOn.price, isYearly)}
+              </span>
             </div>
           ))}
         </div>
 
         <div className="mt-6 flex items-center justify-between px-4 sm:px-6">
-          <strong className="text-sm leading-5 font-normal text-grey">{`Total (${isYearly ? 'per year' : 'per month'})`}</strong>
-          <span className="text-base leading-5 font-bold text-purple sm:text-xl">{priceFormatter(12, isYearly)}</span>
+          <strong className="text-sm leading-5 font-normal text-grey">
+            {`Total (${isYearly ? 'per year' : 'per month'})`}
+          </strong>
+          <span className="text-base leading-5 font-bold text-purple sm:text-xl">
+            {priceFormatter(finalPrice, isYearly)}
+          </span>
         </div>
       </FormCard>
       <FormButtons
