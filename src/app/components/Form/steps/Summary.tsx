@@ -45,7 +45,7 @@ export function Summary() {
             </span>
           </div>
 
-          <div className="h-[1px] w-full bg-border-grey" />
+          {addOns.length > 0 && <div className="h-[1px] w-full bg-border-grey" />}
 
           {addOns.map((addOn, index) => (
             <div key={index} className="flex items-center justify-between">
