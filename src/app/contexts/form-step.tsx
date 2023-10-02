@@ -6,6 +6,7 @@ type FormStepContextData = {
   steps: { title: string; number: number }[];
   handleNextStep: () => void;
   handlePreviousStep: () => void;
+  moveToStep(step: number): void;
 }
 
 export const FormStepContext = createContext({
@@ -13,6 +14,7 @@ export const FormStepContext = createContext({
   steps: [],
   handleNextStep: () => {},
   handlePreviousStep: () => {},
+  moveToStep: () => {},
 } as FormStepContextData);
 
 interface FormStepProviderProps {
@@ -51,8 +53,13 @@ export const FormStepProvider = ({ children }: FormStepProviderProps) => {
     }
   };
 
+  const moveToStep = (step: number) => {
+    setCurrentStep(step);
+    saveValueToLocalStorage('currentStep', `${step}`)
+  }
+
   return (
-    <FormStepContext.Provider value={{ steps, currentStep, handleNextStep, handlePreviousStep }}>
+    <FormStepContext.Provider value={{ steps, currentStep, handleNextStep, handlePreviousStep, moveToStep }}>
       {children}
     </FormStepContext.Provider>
   );
