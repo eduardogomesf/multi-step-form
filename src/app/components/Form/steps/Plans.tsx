@@ -94,7 +94,7 @@ export function Plans() {
               key={plan.name}
               plan={plan}
               icon={plan.icon}
-              isSelected={plan.name === selectedPlan.name}
+              isSelected={plan.name === selectedPlan?.name}
               handleSelectPlan={handleSelectPlan}
               freeTrialDescription={plan.freeTrialDescription}
             />
