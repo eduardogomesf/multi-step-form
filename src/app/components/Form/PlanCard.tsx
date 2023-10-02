@@ -1,18 +1,23 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { PlanWithPrices } from "./steps/Plans";
+import { useForm } from "../../hooks/use-form";
+import { priceFormatter } from "../../util/price-formatter";
 
 interface PlanCard {
-  name: string;
-  price: string;
+  plan: PlanWithPrices;
   icon: string;
   isSelected: boolean;
-  handleSelectPlan?: () => void;
+  handleSelectPlan: (plan: PlanWithPrices) => void;
   freeTrialDescription: string;
-  isYearlyVersion: boolean;
 }
 
-export function PlanCard({ name, price, icon, isSelected, handleSelectPlan, freeTrialDescription, isYearlyVersion }: PlanCard) {
+export function PlanCard({ plan, icon, isSelected, handleSelectPlan, freeTrialDescription }: PlanCard) {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 640);
+
+  const { isYearly } = useForm()
+
+  const planType = isYearly ? 'yearly' : 'monthly';
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,13 +37,13 @@ export function PlanCard({ name, price, icon, isSelected, handleSelectPlan, free
         ${isSelected ? 'border-purple bg-very-light-grey' : ''}
         sm:flex-col sm:gap-0 sm:justify-between sm:items-start sm:h-[181px]
       `}
-      onClick={handleSelectPlan}
+      onClick={() => handleSelectPlan({ name: plan.name, price: plan.price })}
     >
       <Image src={icon} alt="Plan icon" width={40} height={40} />
       <div className="flex flex-col gap-1 items-start">
-        <strong className="text-base font-medium text-denim">{name}</strong>
-        <span className="text-sm font-normal text-grey leading-5">{price}</span>
-        {(!isSmallScreen && isYearlyVersion && freeTrialDescription) && (
+        <strong className="text-base font-medium text-denim">{plan.name}</strong>
+        <span className="text-sm font-normal text-grey leading-5">{priceFormatter(plan.price[planType], isYearly)}</span>
+        {(!isSmallScreen && isYearly && freeTrialDescription) && (
           <span className="text-xs font-normal text-denim">{freeTrialDescription}</span>
         )}
       </div>

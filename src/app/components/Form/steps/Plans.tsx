@@ -40,6 +40,14 @@ const plans = [
 
 type TypeOfPlan = 'monthly' | 'yearly';
 
+export type PlanWithPrices = {
+  name: string;
+  price: {
+    monthly: number;
+    yearly: number;
+  }
+}
+
 export function Plans() {
   const {
     selectedPlan,
@@ -58,10 +66,17 @@ export function Plans() {
     if (!selectedPlan) return;
     saveValueToLocalStorage('plan', JSON.stringify({
       name: selectedPlan,
-      price: plans.find(plan => plan.name === selectedPlan)?.price[typeOfPlan],
+      price: plans.find(plan => plan.name === selectedPlan.name)?.price[typeOfPlan],
       isYearly
     }))
     handleNextStep()
+  }
+
+  function handleSelectPlan(plan: PlanWithPrices) {
+    setSelectedPlan({
+      name: plan.name,
+      price: plan.price[typeOfPlan]
+    })
   }
 
 
@@ -77,13 +92,11 @@ export function Plans() {
           {plans.map(plan => (
             <PlanCard
               key={plan.name}
-              name={plan.name}
-              price={priceFormatter(plan.price[typeOfPlan], isYearly)}
+              plan={plan}
               icon={plan.icon}
-              isSelected={plan.name === selectedPlan}
-              handleSelectPlan={() => setSelectedPlan(plan.name)}
+              isSelected={plan.name === selectedPlan.name}
+              handleSelectPlan={handleSelectPlan}
               freeTrialDescription={plan.freeTrialDescription}
-              isYearlyVersion={isYearly}
             />
           ))}
         </div>

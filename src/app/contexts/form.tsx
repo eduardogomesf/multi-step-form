@@ -22,8 +22,8 @@ type FormContextData = {
   dispatchPhoneNumberField: React.Dispatch<any>;
   isYearly: boolean;
   setIsYearly: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedPlan: string;
-  setSelectedPlan: React.Dispatch<React.SetStateAction<string>>;
+  selectedPlan: Plan;
+  setSelectedPlan: React.Dispatch<React.SetStateAction<Plan>>;
   addOns: { title: string, description: string, price: number }[];
   setAddOns: React.Dispatch<React.SetStateAction<{ title: string; description: string; price: number; }[]>>;
 }
@@ -37,7 +37,7 @@ export const FormContext = createContext({
   dispatchPhoneNumberField: () => {},
   isYearly: false,
   setIsYearly: () => {},
-  selectedPlan: '',
+  selectedPlan: null as any,
   setSelectedPlan: () => {},
   addOns: [],
   setAddOns: () => {}
@@ -78,6 +78,11 @@ function handleFormState(
   }
 }
 
+export type Plan = {
+  name: string;
+  price: number
+}
+
 interface FormProviderProps {
   children: React.ReactNode;
 }
@@ -90,7 +95,7 @@ export const FormProvider = ({ children }: FormProviderProps) => {
 
   // Plan
   const [isYearly, setIsYearly] = useState<boolean>(false);
-  const [selectedPlan, setSelectedPlan] = useState<string>('Arcade');
+  const [selectedPlan, setSelectedPlan] = useState<Plan>(null as any);
 
   // Add Ons
   const [addOns, setAddOns] = useState<{ title: string, description: string, price: number }[]>([]);
