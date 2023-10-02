@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { priceFormatter } from "../../../util/price-formatter";
@@ -41,7 +41,7 @@ export function Summary() {
   const finalPrice = selectedPlan.price + addOnsTotalPrice
 
   return (
-    <div className="flex flex-col flex-1 justify-between">
+    <Fragment>
       <FormCard>
         <FormHeader title="Finishing up" description="Double-check everything looks OK before confirming." />
         <div className="mt-5 flex flex-col gap-3 bg-very-light-grey rounded-lg p-4 sm:px-6">
@@ -89,6 +89,6 @@ export function Summary() {
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />
-    </div>
+    </Fragment>
   )
 }

@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
@@ -75,7 +76,7 @@ export function AddOns() {
   }
 
   return (
-    <div className="flex flex-col flex-1 justify-between">
+    <Fragment>
       <FormCard>
         <FormHeader title="Pick add-ons" description="Add-ons help enhance your gaming experience." />
         <div className="mt-5 flex flex-col gap-3">
@@ -94,6 +95,6 @@ export function AddOns() {
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />
-    </div>
+    </Fragment>
   )
 }

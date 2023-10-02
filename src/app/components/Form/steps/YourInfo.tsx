@@ -8,6 +8,7 @@ import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
 import { ACTIONS } from "../../../contexts/form";
+import { Fragment } from "react";
 
 export function YourInfo() {
   const {
@@ -68,7 +69,7 @@ export function YourInfo() {
   }
 
   return (
-    <div className="flex flex-col flex-1 justify-between">
+    <Fragment>
       <FormCard>
         <FormHeader title="Personal Info" description="Please provide your name, email address, and phone number." />
         <div className="mt-5 flex flex-col gap-4">
@@ -105,6 +106,6 @@ export function YourInfo() {
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />
-    </div>
+    </Fragment>
   )
 } 

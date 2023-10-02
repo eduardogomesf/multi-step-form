@@ -7,6 +7,7 @@ import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
 import { priceFormatter } from "../../../util/price-formatter";
+import { Fragment } from "react";
 
 const plans = [
   {
@@ -85,7 +86,7 @@ export function Plans() {
   }
 
   return (
-    <div className="flex flex-col flex-1 justify-between">
+    <Fragment>
       <FormCard>
         <FormHeader title="Select your plan" description="You have the option of monthly or yearly billing." />
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -123,6 +124,6 @@ export function Plans() {
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />
-    </div>
+    </Fragment>
   )
 }

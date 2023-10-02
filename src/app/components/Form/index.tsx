@@ -9,11 +9,11 @@ export function Form() {
   const { currentStep } = useFormStep();
 
   return (
-    <Fragment>
+    <div className="flex flex-col flex-1 justify-between">
       {currentStep === 1 && <YourInfo />}
       {currentStep === 2 && <Plans />}
       {currentStep === 3 && <AddOns />}
       {currentStep === 4 && <Summary />}
-    </Fragment>
+    </div>
   )
 } 
