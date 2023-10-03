@@ -4,9 +4,9 @@ Multi Step Form: Progressive Data Input with Seamless User Experience
 "Multi Step Form" is a frontend application developed using Next.js 13 and TypeScript. Crafted for user-friendly input, it features a four-step form process: personal info, plan choosing, addons, and a summary. The segmented approach allows for intuitive navigation and efficient data input, providing a smooth user experience.
 
 ## Key Technologies & Concepts:
-[Next.js](https://nextjs.org/)  
-[TypeScript](https://www.typescriptlang.org/)
-[Tailwind CSS](https://tailwindcss.com/)
+[Next.js](https://nextjs.org/)   
+[TypeScript](https://www.typescriptlang.org/) 
+[Tailwind CSS](https://tailwindcss.com/) 
 [Radix](https://www.radix-ui.com/)
 
 ## Project Purpose:
