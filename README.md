@@ -5,9 +5,9 @@ Multi Step Form: Progressive Data Input with Seamless User Experience
 
 ## Key Technologies & Concepts:
 [Next.js](https://nextjs.org/)   
-[TypeScript](https://www.typescriptlang.org/) 
-[Tailwind CSS](https://tailwindcss.com/) 
-[Radix](https://www.radix-ui.com/)
+[TypeScript](https://www.typescriptlang.org/)    
+[Tailwind CSS](https://tailwindcss.com/)    
+[Radix](https://www.radix-ui.com/)   
 
 ## Project Purpose:
 Alright, so what's the deal with "Multi Step Form"? Well, think of those super long, tedious forms you hate filling out. We took that pain away! This project breaks down a mammoth form into easy-peasy sections: personal stuff, choosing your plan, some optional goodies, and a quick recap. Developed with Next.js 13, it's a sweet example of making user experiences smoother. In short, we're making forms less yawn-worthy and more "heck, that was quick!"
