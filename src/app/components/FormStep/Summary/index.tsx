@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import Image from "next/image";
 
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
