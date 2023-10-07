@@ -65,7 +65,11 @@ export function AddOns() {
   return (
     <Fragment>
       <Form.Card>
-        <Form.Header title="Pick add-ons" description="Add-ons help enhance your gaming experience." />
+        <Form.Header
+          title="Pick add-ons"
+          description="Add-ons help enhance your gaming experience."
+        />
+
         <div className="mt-5 flex flex-col gap-3">
           {ADD_ONS.map((addOn, index) => (
             <AddOnOption
