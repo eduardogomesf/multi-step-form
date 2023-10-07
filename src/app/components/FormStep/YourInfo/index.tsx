@@ -7,9 +7,8 @@ import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
 import { ACTIONS } from "../../../contexts/form";
 
-import { FormHeader } from "../../Form/FormHeader";
 import { TextInput } from "../../Form/TextInput";
-import { FormCard } from "../../Form/FormCard";
+import Form from "../../Form";
 import { Footer } from "../../Footer";
 
 export function YourInfo() {
@@ -72,8 +71,8 @@ export function YourInfo() {
 
   return (
     <Fragment>
-      <FormCard>
-        <FormHeader title="Personal Info" description="Please provide your name, email address, and phone number." />
+      <Form.Card>
+        <Form.Header title="Personal Info" description="Please provide your name, email address, and phone number." />
         <div className="mt-5 flex flex-col gap-4">
           <TextInput
             label="Name"
@@ -103,7 +102,7 @@ export function YourInfo() {
             hasError={phoneNumberField.hasError}
           />
         </div>
-      </FormCard>
+      </Form.Card>
       <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}

@@ -6,8 +6,7 @@ import { useLocalStorage } from "../../../hooks/use-local-storage";
 
 import { AddOnOption } from "./AddOnOption";
 import { Footer } from "../../Footer";
-import { FormCard } from "../../Form/FormCard";
-import { FormHeader } from "../../Form/FormHeader";
+import Form from "../../Form";
 
 type Addon = {
   title: string;
@@ -79,8 +78,8 @@ export function AddOns() {
 
   return (
     <Fragment>
-      <FormCard>
-        <FormHeader title="Pick add-ons" description="Add-ons help enhance your gaming experience." />
+      <Form.Card>
+        <Form.Header title="Pick add-ons" description="Add-ons help enhance your gaming experience." />
         <div className="mt-5 flex flex-col gap-3">
           {ADD_ONS.map((addOn, index) => (
             <AddOnOption
@@ -92,7 +91,7 @@ export function AddOns() {
             />
           ))}
         </div>
-      </FormCard>
+      </Form.Card>
       <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}

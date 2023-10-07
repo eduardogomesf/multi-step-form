@@ -3,8 +3,7 @@ import * as Switch from "@radix-ui/react-switch";
 
 import { PlanCard } from "./PlanCard";
 import { Footer } from "../../Footer";
-import { FormCard } from "../../Form/FormCard";
-import { FormHeader } from "../../Form/FormHeader";
+import Form from "../../Form";
 
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
@@ -88,8 +87,8 @@ export function Plans() {
 
   return (
     <Fragment>
-      <FormCard>
-        <FormHeader title="Select your plan" description="You have the option of monthly or yearly billing." />
+      <Form.Card>
+        <Form.Header title="Select your plan" description="You have the option of monthly or yearly billing." />
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           {plans.map(plan => (
             <PlanCard
@@ -120,7 +119,7 @@ export function Plans() {
           </Switch.Root>
           <span className={`text-sm font-normal ${isYearly ? 'text-denim' : 'text-grey'} duration-100`}>Yearly</span>
         </div>
-      </FormCard>
+      </Form.Card>
       <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}

@@ -6,8 +6,7 @@ import { useFormStep } from "../../../hooks/use-form-step";
 import { priceFormatter } from "../../../util/price-formatter";
 
 import { Footer } from "../../Footer";
-import { FormCard } from "../../Form/FormCard";
-import { FormHeader } from "../../Form/FormHeader";
+import Form from "../../Form";
 
 export function Summary() {
   const [submitted, setSubmitted] = useState(false)
@@ -37,7 +36,7 @@ export function Summary() {
   if (submitted) {
     return (
       <div className="sm:my-auto">
-        <FormCard>
+        <Form.Card>
           <div className="flex flex-col items-center">
             <Image src={'/images/icons/icon-thank-you.svg'} alt="Thank you icon" width={56} height={56} />
             <strong className="mt-6 text-2xl	text-denim font-bold" >Thank you!</strong>
@@ -45,7 +44,7 @@ export function Summary() {
               Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@multistepform.com.
             </p>
           </div>
-        </FormCard>
+        </Form.Card>
       </div>
     )
   }
@@ -55,8 +54,8 @@ export function Summary() {
 
   return (
     <Fragment>
-      <FormCard>
-        <FormHeader title="Finishing up" description="Double-check everything looks OK before confirming." />
+      <Form.Card>
+        <Form.Header title="Finishing up" description="Double-check everything looks OK before confirming." />
         <div className="mt-5 flex flex-col gap-3 bg-very-light-grey rounded-lg p-4 sm:px-6">
           <div className="flex items-center justify-between">
             <div className="flex flex-col gap-1 items-start">
@@ -97,7 +96,7 @@ export function Summary() {
             {priceFormatter(finalPrice, isYearly)}
           </span>
         </div>
-      </FormCard>
+      </Form.Card>
       <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
