@@ -1,8 +1,10 @@
 import { Fragment } from "react";
+
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
-import { AddOnOption } from "../AddOnOption";
+
+import { AddOnOption } from "./AddOnOption";
 import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";

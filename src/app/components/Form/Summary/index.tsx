@@ -1,11 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
+import Image from "next/image";
+
 import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { priceFormatter } from "../../../util/price-formatter";
+
 import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
-import Image from "next/image";
 
 export function Summary() {
   const [submitted, setSubmitted] = useState(false)

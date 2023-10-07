@@ -1,7 +1,8 @@
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { CheckIcon } from '@radix-ui/react-icons';
-import { useForm } from "../../hooks/use-form";
-import { priceFormatter } from "../../util/price-formatter";
+
+import { useForm } from "../../../hooks/use-form";
+import { priceFormatter } from "../../../util/price-formatter";
 
 interface AddOnOptionProps {
   addOn: {

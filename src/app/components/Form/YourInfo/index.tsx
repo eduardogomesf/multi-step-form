@@ -1,14 +1,16 @@
 'use client';
 
-import { FormHeader } from "../FormHeader";
-import { TextInput } from "../TextInput";
-import { FormCard } from "../FormCard";
-import { FormButtons } from "../FormButtons";
+import { Fragment } from "react";
+
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
 import { ACTIONS } from "../../../contexts/form";
-import { Fragment } from "react";
+
+import { FormHeader } from "../FormHeader";
+import { TextInput } from "../TextInput";
+import { FormCard } from "../FormCard";
+import { FormButtons } from "../FormButtons";
 
 export function YourInfo() {
   const {

@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { PlanWithPrices } from "./steps/Plans";
-import { useForm } from "../../hooks/use-form";
-import { priceFormatter } from "../../util/price-formatter";
+
+import { PlanWithPrices } from "./index";
+
+import { useForm } from "../../../hooks/use-form";
+import { priceFormatter } from "../../../util/price-formatter";
 
 interface PlanCard {
   plan: PlanWithPrices;

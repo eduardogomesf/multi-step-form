@@ -9,6 +9,7 @@ interface TextInputProps {
 }
 
 export function TextInput({ label, placeholder, value, onChange, errorMessage, hasError, clearError }: TextInputProps) {
+
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
     onChange(value)

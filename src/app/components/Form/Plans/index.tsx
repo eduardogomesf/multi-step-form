@@ -1,12 +1,14 @@
+import { Fragment } from "react";
 import * as Switch from "@radix-ui/react-switch";
+
+import { PlanCard } from "./PlanCard";
 import { FormButtons } from "../FormButtons";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
-import { PlanCard } from "../PlanCard";
+
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
-import { Fragment } from "react";
 
 const plans = [
   {
