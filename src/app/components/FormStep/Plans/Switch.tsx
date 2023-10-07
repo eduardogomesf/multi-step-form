@@ -17,13 +17,13 @@ export function Switch({ isYearly, handlePlanTypeChange }: SwitchProps) {
         checked={isYearly}
         onCheckedChange={handlePlanTypeChange}
         className={`
-              w-[40px] h-[20px] p-1 relative bg-denim rounded-full
+              w-10 h-5 p-1 relative bg-denim rounded-full
             `}
       >
         <RadixSwitch.Thumb
           className={`
-                w-[12px] h-[12px] block bg-white rounded-full
-                ${isYearly ? 'translate-x-[20px]	' : 'translate-x-0'} duration-300
+                w-3 h-3 block bg-white rounded-full
+                ${isYearly ? 'translate-x-5	' : 'translate-x-0'} duration-300
               `}
         />
       </RadixSwitch.Root>
