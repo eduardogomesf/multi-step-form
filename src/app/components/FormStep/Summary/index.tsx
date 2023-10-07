@@ -72,7 +72,7 @@ export function Summary() {
           </div>
 
           {addOns.length > 0 && (
-            <div className="h-[1px] w-full bg-border-grey" />
+            <div className="h-px w-full bg-border-grey" />
           )}
 
           {addOns.map((addOn, index) => (
