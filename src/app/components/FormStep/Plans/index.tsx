@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import * as Switch from "@radix-ui/react-switch";
 
 import { PlanCard } from "./PlanCard";
 import { Footer } from "../../Footer";
@@ -9,6 +8,7 @@ import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
 import { TypeOfPlan, PlanWithPrices } from "../../../types/plan";
+import { Switch } from "./Switch";
 
 const plans = [
   {
@@ -79,7 +79,11 @@ export function Plans() {
   return (
     <Fragment>
       <Form.Card>
-        <Form.Header title="Select your plan" description="You have the option of monthly or yearly billing." />
+        <Form.Header
+          title="Select your plan"
+          description="You have the option of monthly or yearly billing."
+        />
+
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           {plans.map(plan => (
             <PlanCard
@@ -92,23 +96,12 @@ export function Plans() {
             />
           ))}
         </div>
+
         <div className="flex justify-center items-center gap-6 py-4 bg-very-light-grey mt-6 rounded-lg sm:mt-8">
-          <span className={`text-sm font-normal ${isYearly ? 'text-grey' : 'text-denim'} duration-100`}>Monthly</span>
-          <Switch.Root
-            checked={isYearly}
-            onCheckedChange={handlePlanTypeChange}
-            className={`
-              w-[40px] h-[20px] p-1 relative bg-denim rounded-full
-            `}
-          >
-            <Switch.Thumb
-              className={`
-                w-[12px] h-[12px] block bg-white rounded-full
-                ${isYearly ? 'translate-x-[20px]	' : 'translate-x-0'} duration-300
-              `}
-            />
-          </Switch.Root>
-          <span className={`text-sm font-normal ${isYearly ? 'text-denim' : 'text-grey'} duration-100`}>Yearly</span>
+          <Switch
+            handlePlanTypeChange={handlePlanTypeChange}
+            isYearly={isYearly}
+          />
         </div>
       </Form.Card>
       <Footer
