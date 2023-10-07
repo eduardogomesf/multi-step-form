@@ -7,21 +7,7 @@ import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { AddOnOption } from "./AddOnOption";
 import { Footer } from "../../Footer";
 import Form from "../../Form";
-
-type Addon = {
-  title: string;
-  description: string;
-  price: number
-}
-
-type AddonWithPrices = {
-  title: string;
-  description: string;
-  price: {
-    monthly: number;
-    yearly: number;
-  }
-}
+import { AddonWithPrices, Addon } from "../../../types/add-ons";
 
 const ADD_ONS: AddonWithPrices[] = [
   {

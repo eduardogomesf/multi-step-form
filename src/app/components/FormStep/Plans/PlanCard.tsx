@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { PlanWithPrices } from "./index";
+import { PlanWithPrices } from "../../../types/plan";
 
 import { useForm } from "../../../hooks/use-form";
 import { priceFormatter } from "../../../util/price-formatter";

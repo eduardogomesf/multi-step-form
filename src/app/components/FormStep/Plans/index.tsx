@@ -8,6 +8,7 @@ import Form from "../../Form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
+import { TypeOfPlan, PlanWithPrices } from "../../../types/plan";
 
 const plans = [
   {
@@ -38,16 +39,6 @@ const plans = [
     freeTrialDescription: '2 months free',
   },
 ];
-
-type TypeOfPlan = 'monthly' | 'yearly';
-
-export type PlanWithPrices = {
-  name: string;
-  price: {
-    monthly: number;
-    yearly: number;
-  }
-}
 
 export function Plans() {
   const {
