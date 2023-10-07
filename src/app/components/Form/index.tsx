@@ -4,15 +4,33 @@ import { Plans } from "./steps/Plans";
 import { AddOns } from "./steps/AddOns";
 import { Summary } from "./steps/Summary";
 
+const steps = [
+  {
+    step: 1,
+    component: YourInfo
+  },
+  {
+    step: 2,
+    component: Plans
+  },
+  {
+    step: 3,
+    component: AddOns
+  },
+  {
+    step: 4,
+    component: Summary
+  }
+]
+
 export function Form() {
   const { currentStep } = useFormStep();
 
+  const step = steps.find(({ step }) => step === currentStep);
+
   return (
     <div className="flex flex-col flex-1 justify-between">
-      {currentStep === 1 && <YourInfo />}
-      {currentStep === 2 && <Plans />}
-      {currentStep === 3 && <AddOns />}
-      {currentStep === 4 && <Summary />}
+      {step && step.component()}
     </div>
   )
 } 
