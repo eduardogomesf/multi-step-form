@@ -14,7 +14,11 @@ export function Sidebar() {
         className="flex flex-row gap-4 sm:flex-col sm:gap-8">
         {steps.map(step => {
           return (
-            <Step key={step.number} step={step} isActive={step.number === currentStep} />
+            <Step
+              key={step.number}
+              step={step}
+              isActive={step.number === currentStep}
+            />
           )
         })}
       </div>
