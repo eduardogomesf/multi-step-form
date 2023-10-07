@@ -6,8 +6,8 @@ import { useLocalStorage } from "../../../hooks/use-local-storage";
 
 import { AddOnOption } from "./AddOnOption";
 import { Footer } from "../../Footer";
-import { FormCard } from "../FormCard";
-import { FormHeader } from "../FormHeader";
+import { FormCard } from "../../Form/FormCard";
+import { FormHeader } from "../../Form/FormHeader";
 
 type Addon = {
   title: string;

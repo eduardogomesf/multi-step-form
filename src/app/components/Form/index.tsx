@@ -1,8 +1,8 @@
 import { useFormStep } from "../../hooks/use-form-step";
-import { YourInfo } from "./YourInfo";
-import { Plans } from "./Plans";
-import { AddOns } from "./AddOns";
-import { Summary } from "./Summary";
+import { YourInfo } from "../FormStep/YourInfo";
+import { Plans } from "../FormStep/Plans";
+import { AddOns } from "../FormStep/AddOns";
+import { Summary } from "../FormStep/Summary";
 
 const steps = [
   {

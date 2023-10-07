@@ -3,8 +3,8 @@ import * as Switch from "@radix-ui/react-switch";
 
 import { PlanCard } from "./PlanCard";
 import { Footer } from "../../Footer";
-import { FormCard } from "../FormCard";
-import { FormHeader } from "../FormHeader";
+import { FormCard } from "../../Form/FormCard";
+import { FormHeader } from "../../Form/FormHeader";
 
 import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";

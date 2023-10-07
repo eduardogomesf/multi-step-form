@@ -7,9 +7,9 @@ import { useLocalStorage } from "../../../hooks/use-local-storage";
 import { useForm } from "../../../hooks/use-form";
 import { ACTIONS } from "../../../contexts/form";
 
-import { FormHeader } from "../FormHeader";
-import { TextInput } from "../TextInput";
-import { FormCard } from "../FormCard";
+import { FormHeader } from "../../Form/FormHeader";
+import { TextInput } from "../../Form/TextInput";
+import { FormCard } from "../../Form/FormCard";
 import { Footer } from "../../Footer";
 
 export function YourInfo() {

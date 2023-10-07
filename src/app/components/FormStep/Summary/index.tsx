@@ -6,8 +6,8 @@ import { useFormStep } from "../../../hooks/use-form-step";
 import { priceFormatter } from "../../../util/price-formatter";
 
 import { Footer } from "../../Footer";
-import { FormCard } from "../FormCard";
-import { FormHeader } from "../FormHeader";
+import { FormCard } from "../../Form/FormCard";
+import { FormHeader } from "../../Form/FormHeader";
 
 export function Summary() {
   const [submitted, setSubmitted] = useState(false)
