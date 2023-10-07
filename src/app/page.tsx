@@ -1,8 +1,9 @@
 'use client'
 
-import { Form } from "./components/Form";
+import { FormStep } from "./components/FormStep";
 import { Sidebar } from "./components/Sidebar";
 import { FormProvider } from "./contexts/form";
+
 import { FormStepProvider } from "./contexts/form-step";
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
         }>
           <Sidebar />
           <div className="flex flex-1 sm:max-w-[550px] sm:flex-0 sm:mx-auto">
-            <Form />
+            <FormStep />
           </div>
         </main >
       </FormProvider>
