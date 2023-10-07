@@ -10,35 +10,7 @@ import { useForm } from "../../../hooks/use-form";
 import { TypeOfPlan, PlanWithPrices } from "../../../types/plan";
 import { Switch } from "./Switch";
 
-const plans = [
-  {
-    name: 'Arcade',
-    price: {
-      'monthly': 9,
-      'yearly': 90
-    },
-    icon: '/images/icons/icon-arcade.svg',
-    freeTrialDescription: '2 months free',
-  },
-  {
-    name: 'Advanced',
-    price: {
-      'monthly': 12,
-      'yearly': 120
-    },
-    icon: '/images/icons/icon-advanced.svg',
-    freeTrialDescription: '2 months free',
-  },
-  {
-    name: 'Pro',
-    price: {
-      'monthly': 15,
-      'yearly': 150
-    },
-    icon: '/images/icons/icon-pro.svg',
-    freeTrialDescription: '2 months free',
-  },
-];
+import plans from '../../../../data/plans.json'
 
 export function Plans() {
   const {
