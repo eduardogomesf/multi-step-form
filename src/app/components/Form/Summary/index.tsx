@@ -5,7 +5,7 @@ import { useForm } from "../../../hooks/use-form";
 import { useFormStep } from "../../../hooks/use-form-step";
 import { priceFormatter } from "../../../util/price-formatter";
 
-import { FormButtons } from "../FormButtons";
+import { Footer } from "../../Footer";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 
@@ -98,7 +98,7 @@ export function Summary() {
           </span>
         </div>
       </FormCard>
-      <FormButtons
+      <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />

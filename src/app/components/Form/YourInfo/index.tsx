@@ -10,7 +10,7 @@ import { ACTIONS } from "../../../contexts/form";
 import { FormHeader } from "../FormHeader";
 import { TextInput } from "../TextInput";
 import { FormCard } from "../FormCard";
-import { FormButtons } from "../FormButtons";
+import { Footer } from "../../Footer";
 
 export function YourInfo() {
   const {
@@ -104,7 +104,7 @@ export function YourInfo() {
           />
         </div>
       </FormCard>
-      <FormButtons
+      <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />

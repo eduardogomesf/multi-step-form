@@ -1,11 +1,11 @@
 import { useFormStep } from "../../hooks/use-form-step";
 
-interface FormButtonsProps {
+interface FooterProps {
   handleGoBack: () => void;
   handleGoForwardStep: () => void;
 }
 
-export function FormButtons({ handleGoBack, handleGoForwardStep }: FormButtonsProps) {
+export function Footer({ handleGoBack, handleGoForwardStep }: FooterProps) {
   const { currentStep, steps } = useFormStep();
 
   const numberOfSteps = steps.length;

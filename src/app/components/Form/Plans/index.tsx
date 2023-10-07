@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import * as Switch from "@radix-ui/react-switch";
 
 import { PlanCard } from "./PlanCard";
-import { FormButtons } from "../FormButtons";
+import { Footer } from "../../Footer";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 
@@ -121,7 +121,7 @@ export function Plans() {
           <span className={`text-sm font-normal ${isYearly ? 'text-denim' : 'text-grey'} duration-100`}>Yearly</span>
         </div>
       </FormCard>
-      <FormButtons
+      <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />

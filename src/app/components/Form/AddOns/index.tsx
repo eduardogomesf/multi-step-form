@@ -5,7 +5,7 @@ import { useFormStep } from "../../../hooks/use-form-step";
 import { useLocalStorage } from "../../../hooks/use-local-storage";
 
 import { AddOnOption } from "./AddOnOption";
-import { FormButtons } from "../FormButtons";
+import { Footer } from "../../Footer";
 import { FormCard } from "../FormCard";
 import { FormHeader } from "../FormHeader";
 
@@ -93,7 +93,7 @@ export function AddOns() {
           ))}
         </div>
       </FormCard>
-      <FormButtons
+      <Footer
         handleGoForwardStep={handleGoForwardStep}
         handleGoBack={handlePreviousStep}
       />
