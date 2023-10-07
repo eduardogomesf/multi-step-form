@@ -11,7 +11,7 @@ export default function Home() {
     <FormStepProvider>
       <FormProvider>
         <main className={`
-          flex flex-col h-screen
+          flex flex-col min-h-screen
           sm:flex-row sm:m-4 sm:mr-0 sm:h-[calc(100vh-32px)]`
         }>
           <Sidebar />
