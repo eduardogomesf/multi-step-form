@@ -72,7 +72,11 @@ export function YourInfo() {
   return (
     <Fragment>
       <Form.Card>
-        <Form.Header title="Personal Info" description="Please provide your name, email address, and phone number." />
+        <Form.Header
+          title="Personal Info"
+          description="Please provide your name, email address, and phone number."
+        />
+
         <div className="mt-5 flex flex-col gap-4">
           <TextInput
             label="Name"
