@@ -1,4 +1,4 @@
-import { useFormStep } from "../hooks/use-form-step";
+import { useFormStep } from "../../hooks/use-form-step";
 import { Step } from "./Step";
 
 export function Sidebar() {
